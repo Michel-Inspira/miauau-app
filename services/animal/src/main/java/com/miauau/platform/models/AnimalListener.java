@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventLis
 import org.springframework.data.mongodb.core.mapping.event.BeforeConvertEvent;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Component
@@ -16,9 +15,6 @@ public class AnimalListener extends AbstractMongoEventListener<Animal> {
         Animal animal = event.getSource();
         if (animal.getId() == null) {
             animal.setId(UUID.randomUUID());
-        }
-        if (animal.getCreatedAt() == null) {
-            animal.setCreatedAt(LocalDateTime.now());
         }
     }
 }
