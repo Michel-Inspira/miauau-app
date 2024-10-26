@@ -1,6 +1,7 @@
 package com.miauau.platform.services;
 
 import com.miauau.platform.models.Animal;
+import com.miauau.platform.models.HealthStatus;
 import com.miauau.platform.requests.AnimalRequest;
 import com.miauau.platform.responses.AnimalResponse;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,11 @@ public class AnimalMapper {
         return Animal.builder()
                 .name(request.name())
                 .sex(request.sex())
+                .age(request.age())
+                .healthStatus(HealthStatus.builder()
+                        .healthStatus(request.healthStatus())
+                        .build())
+                .others(request.others())
                 .build();
     }
 
@@ -23,8 +29,8 @@ public class AnimalMapper {
                 animal.getName(),
                 animal.getSex(),
                 animal.getAge(),
-                animal.getHealthStatus(),
-                animal.getCreated_at(),
+                animal.getCreatedAt(),
+                animal.getHealthStatus().getHealthStatus(),
                 animal.getOthers()
         );
     }

@@ -2,10 +2,10 @@ package com.miauau.platform.services;
 
 import com.miauau.platform.exceptions.AnimalNotFoundException;
 import com.miauau.platform.models.Animal;
+import com.miauau.platform.models.HealthStatus;
 import com.miauau.platform.repositories.AnimalRepository;
 import com.miauau.platform.requests.AnimalRequest;
 import com.miauau.platform.responses.AnimalResponse;
-import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +52,7 @@ public class AnimalService {
 
         return mapper.toResponse(animal);
     }
-    
+
     public void delete(UUID id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
@@ -64,21 +64,13 @@ public class AnimalService {
     }
 
     private void mergeAnimal(Animal animal, AnimalRequest request) {
-        if (StringUtils.isNotBlank(request.name())) {
-            animal.setName(request.name());
-        }
-        if (request.sex() != null) {
-            animal.setSex(request.sex());
-        }
-        if (request.age() != null) {
-            animal.setAge(request.age());
-        }
-        if (request.healthStatus() != null) {
-            animal.setHealthStatus(request.healthStatus());
-        }
-        if (request.others() != null) {
-            animal.setOthers(request.others());
-        }
+        animal.setName(request.name());
+        animal.setSex(request.sex());
+        animal.setAge(request.age());
+        animal.setHealthStatus(HealthStatus.builder()
+                .healthStatus(request.healthStatus())
+                .build());
+        animal.setOthers(request.others());
     }
 }
 

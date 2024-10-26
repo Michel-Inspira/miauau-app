@@ -14,5 +14,5 @@ import java.util.Map;
 @Builder
 @Validated
 public class HealthStatus {
-    private Map<String, Object> health;
+    private Map<String, String> healthStatus;
 }

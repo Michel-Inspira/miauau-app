@@ -24,6 +24,6 @@ public class Animal {
     private Character sex;
     private Integer age;
     private HealthStatus healthStatus;
-    private LocalDateTime created_at;
-    private Map<String, Object> others;
+    private LocalDateTime createdAt;
+    private Map<String, String> others;
 }

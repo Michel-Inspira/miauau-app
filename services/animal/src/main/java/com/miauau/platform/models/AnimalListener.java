@@ -17,8 +17,8 @@ public class AnimalListener extends AbstractMongoEventListener<Animal> {
         if (animal.getId() == null) {
             animal.setId(UUID.randomUUID());
         }
-        if (animal.getCreated_at() == null) {
-            animal.setCreated_at(LocalDateTime.now());
+        if (animal.getCreatedAt() == null) {
+            animal.setCreatedAt(LocalDateTime.now());
         }
     }
 }
