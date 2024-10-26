@@ -30,7 +30,6 @@ public class AnimalController {
 
     @GetMapping
     public ResponseEntity<List<AnimalResponse>> getAll() {
-
         return ResponseEntity.ok(service.getAll());
     }
 
