@@ -1,195 +1,195 @@
 {
-	"info": {
-		"_postman_id": "c2415fd8-9ef0-4cba-8a3b-033247ee702e",
-		"name": "person-service",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21397337"
-	},
-	"item": [
-		{
-			"name": "Get Non Volunteers",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/v1/person",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"person"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Volunteers",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/v1/person/volunteers",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"person",
-						"volunteers"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Person",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/v1/person/{{person_id}}",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"person",
-						"{{person_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Person",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"if(pm.response.code == 201) {",
-							"    const response = pm.response.json();",
-							"    pm.collectionVariables.set(\"person_id\", response.id);",
-							"}"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"João Silva\",\n    \"isVolunteer\": false,\n    \"role\": \"Membro\",\n    \"email\": \"joao.silva@example.com\",\n    \"phone\": \"+55 11 91234-5678\",\n    \"zipCode\": \"01001-000\",\n    \"street\": \"Rua Principal\",\n    \"number\": \"123\",\n    \"complement\": \"Apto 4B\",\n    \"neighborhood\": \"Centro\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/person",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"person"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Person",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"João Silva\",\n    \"isVolunteer\": false,\n    \"role\": \"Membro\",\n    \"email\": \"novo.email@email.com\",\n    \"phone\": \"+55 11 91234-5678\",\n    \"zipCode\": \"01001-000\",\n    \"street\": \"Rua Nova Principal\",\n    \"number\": \"900\",\n    \"complement\": \"Apto 821B\",\n    \"neighborhood\": \"Centro\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/person/{{person_id}}",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"person",
-						"{{person_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Person",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/v1/person/{{person_id}}",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"person",
-						"{{person_id}}"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "base_url",
-			"value": "localhost:8091",
-			"type": "string"
-		},
-		{
-			"key": "person_id",
-			"value": "",
-			"type": "string"
-		}
-	]
+  "info": {
+    "_postman_id": "c2415fd8-9ef0-4cba-8a3b-033247ee702e",
+    "name": "person-service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21397337"
+  },
+  "item": [
+    {
+      "name": "Get Non Volunteers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/persons",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "person"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Volunteers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/persons/volunteers",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "person",
+            "volunteers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Person",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/persons/{{person_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "person",
+            "{{person_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Person",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if(pm.response.code == 201) {",
+              "    const response = pm.response.json();",
+              "    pm.collectionVariables.set(\"person_id\", response.id);",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"João Silva\",\n    \"isVolunteer\": false,\n    \"role\": \"Membro\",\n    \"email\": \"joao.silva@example.com\",\n    \"phone\": \"+55 11 91234-5678\",\n    \"zipCode\": \"01001-000\",\n    \"street\": \"Rua Principal\",\n    \"number\": \"123\",\n    \"complement\": \"Apto 4B\",\n    \"neighborhood\": \"Centro\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/persons",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "person"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Person",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"João Silva\",\n    \"isVolunteer\": false,\n    \"role\": \"Membro\",\n    \"email\": \"novo.email@email.com\",\n    \"phone\": \"+55 11 91234-5678\",\n    \"zipCode\": \"01001-000\",\n    \"street\": \"Rua Nova Principal\",\n    \"number\": \"900\",\n    \"complement\": \"Apto 821B\",\n    \"neighborhood\": \"Centro\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/persons/{{person_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "person",
+            "{{person_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Person",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/persons/{{person_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "person",
+            "{{person_id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "localhost:8091",
+      "type": "string"
+    },
+    {
+      "key": "person_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
 }

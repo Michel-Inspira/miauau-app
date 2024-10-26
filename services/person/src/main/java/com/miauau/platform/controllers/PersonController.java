@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/person")
+@RequestMapping("/api/v1/persons")
 @RequiredArgsConstructor
 public class PersonController {
 
