@@ -1,0 +1,16 @@
+server:
+  port: 8092
+spring:
+  data:
+    mongodb:
+      username: root
+      password: root
+      host: localhost
+      port: 27017
+      database: adoption
+      authentication-database: admin
+  application:
+    config:
+      animal-url: http://localhost:8090/api/v1/animals
+      person-url: http://localhost:8091/api/v1/persons
+    # Mudar depois para o endereço do API Gateway
