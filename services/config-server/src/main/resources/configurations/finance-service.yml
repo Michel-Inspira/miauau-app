@@ -1,0 +1,11 @@
+server:
+  port: 8095
+spring:
+  data:
+    mongodb:
+      username: root
+      password: root
+      host: localhost
+      port: 27017
+      database: finance
+      authentication-database: admin
