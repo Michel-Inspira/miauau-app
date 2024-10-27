@@ -19,4 +19,12 @@ spring:
           uri: lb:http://ADOPTION-SERVICE
           predicates:
             - Path=/api/v1/adoption/**
+        - id: management-service
+          uri: lb:http://MANAGEMENT-SERVICE
+          predicates:
+            - Path=/api/v1/managements/**
+        - id: event-service
+          uri: lb:http://EVENT-SERVICE
+          predicates:
+            - Path=/api/v1/events/**
   #        Definir demais serviços aqui
