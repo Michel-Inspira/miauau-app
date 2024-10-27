@@ -1,0 +1,23 @@
+server:
+  port: 8222
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: animal-service
+          uri: lb:http://ANIMAL-SERVICE
+          predicates:
+            - Path=/api/v1/animals/**
+        - id: person-service
+          uri: lb:http://PERSON-SERVICE
+          predicates:
+            - Path=/api/v1/persons/**
+        - id: adoption-service
+          uri: lb:http://ADOPTION-SERVICE
+          predicates:
+            - Path=/api/v1/adoption/**
+  #        Definir demais serviços aqui

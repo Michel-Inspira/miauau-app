@@ -19,6 +19,5 @@ spring:
 
 application:
   config:
-    animal-url: http://localhost:8090/api/v1/animals
-    person-url: http://localhost:8091/api/v1/persons
-  # Mudar depois para o endereço do API Gateway
+    animal-url: http://localhost:8222/api/v1/animals
+    person-url: http://localhost:8222/api/v1/persons

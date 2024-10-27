@@ -15,7 +15,7 @@ spring:
       group-id: adoptionGroup
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*' # ok para ambiente de desenvolvimento, mas verificar ao subir em prd
         spring.json.type.mapping: adoptionRequestConfirmation:com.miauau.platform.kafka.AdoptionRequestConfirmation
