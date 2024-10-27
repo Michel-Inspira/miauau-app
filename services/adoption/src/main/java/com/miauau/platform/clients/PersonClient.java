@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
         url = "${application.config.person-url}"
 )
 public interface PersonClient {
+
     @PostMapping
     PersonResponse createPerson(PersonRequest request);
 }
