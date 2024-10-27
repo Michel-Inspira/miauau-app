@@ -1,10 +1,10 @@
-package com.miauau.finance;
+package com.miauau.platform;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FinanceApplicationTests {
+class ManagementApplicationTests {
 
 	@Test
 	void contextLoads() {

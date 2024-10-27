@@ -1,13 +1,13 @@
-package com.miauau.finance;
+package com.miauau.platform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FinanceApplication {
+public class ManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FinanceApplication.class, args);
+		SpringApplication.run(ManagementApplication.class, args);
 	}
 
 }
