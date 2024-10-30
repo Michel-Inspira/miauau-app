@@ -9,7 +9,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -22,10 +21,20 @@ public class Animal {
     @Id
     private UUID id;
     private String name;
+    private String imagePath;
+    private String animalType;
     private Character sex;
+    private String details;
+    private String color;
     private Integer age;
+    private Boolean hasFIV;
+    private Boolean hasFeLV;
+    private String rescueDetails;
+    private String rescueReport;
     private HealthStatus healthStatus;
+    private AnimalConditions animalConditions;
+    private RescuerInfo rescuerInfo;
     @CreatedDate
     private LocalDateTime createdAt;
-    private Map<String, String> others;
+
 }

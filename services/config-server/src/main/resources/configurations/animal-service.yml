@@ -9,3 +9,6 @@ spring:
       port: 27017
       database: animal
       authentication-database: admin
+
+file:
+  uploadDir: ${IMAGE-DIR-PATH}

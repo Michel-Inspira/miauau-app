@@ -2,7 +2,9 @@ package com.miauau.platform.services;
 
 import com.miauau.platform.exceptions.AnimalNotFoundException;
 import com.miauau.platform.models.Animal;
+import com.miauau.platform.models.AnimalConditions;
 import com.miauau.platform.models.HealthStatus;
+import com.miauau.platform.models.RescuerInfo;
 import com.miauau.platform.repositories.AnimalRepository;
 import com.miauau.platform.requests.AnimalRequest;
 import com.miauau.platform.responses.AnimalResponse;
@@ -38,6 +40,7 @@ public class AnimalService {
     }
 
     public AnimalResponse create(AnimalRequest request) {
+
         Animal animal = repository.save(mapper.toEntity(request));
         return mapper.toResponse(animal);
     }
@@ -47,7 +50,7 @@ public class AnimalService {
                 .orElseThrow(() -> new AnimalNotFoundException(
                         format("Cannot updated animal: Animal with id %s not found", id))
                 );
-        mergeAnimal(animal, request);
+        requestToEntity(animal, request);
         repository.save(animal);
 
         return mapper.toResponse(animal);
@@ -63,14 +66,42 @@ public class AnimalService {
         }
     }
 
-    private void mergeAnimal(Animal animal, AnimalRequest request) {
+    private void requestToEntity(Animal animal, AnimalRequest request) {
         animal.setName(request.name());
+        animal.setAnimalType(request.animalType());
         animal.setSex(request.sex());
+        animal.setDetails(request.details());
+        animal.setColor(request.color());
         animal.setAge(request.age());
+        animal.setHasFIV(request.hasFIV());
+        animal.setHasFeLV(request.hasFeLV());
+        animal.setRescueDetails(request.rescueDetails());
+        animal.setRescueReport(request.rescueReport());
         animal.setHealthStatus(HealthStatus.builder()
-                .healthStatus(request.healthStatus())
+                .needsCare(request.needsCare())
+                .healthy(request.healthy())
+                .dirty(request.dirty())
+                .hurt(request.hurt())
+                .mange(request.mange())
+                .fleas(request.fleas())
+                .ticks(request.ticks())
+                .vomiting(request.vomiting())
+                .limping(request.limping())
+                .other(request.other())
                 .build());
-        animal.setOthers(request.others());
+        animal.setAnimalConditions(AnimalConditions.builder()
+                .isVaccinated(request.isVaccinated())
+                .lastVaccinationDate(request.lastVaccinationDate())
+                .isVermifugated(request.isVermifugated())
+                .lastVermifugationDate(request.lastVermifugationDate())
+                .antiFleas(request.antiFleas())
+                .lastAntiFleasDate(request.lastAntiFleasDate())
+                .build());
+        animal.setRescuerInfo(RescuerInfo.builder()
+                .name(request.rescuerName())
+                .phone(request.rescuerPhone())
+                .donationType(request.rescuerDonationType())
+                .build());
     }
 }
 

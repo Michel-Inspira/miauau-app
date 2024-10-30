@@ -1,16 +1,40 @@
 package com.miauau.platform.requests;
 
-import jakarta.validation.constraints.NotNull;
-
-import java.util.Map;
+import java.time.LocalDate;
 
 public record AnimalRequest(
-        @NotNull(message = "Animal name is required")
+        // Animal information
         String name,
-        @NotNull(message = "Animal sex is required")
+        String animalType,
         Character sex,
+        String details,
+        String color,
         Integer age,
-        Map<String, String> healthStatus,
-        Map<String, String> others
+        Boolean hasFIV,
+        Boolean hasFeLV,
+        String rescueDetails,
+        String rescueReport,
+        // Health status
+        String needsCare,
+        Boolean healthy,
+        Boolean dirty,
+        Boolean hurt,
+        Boolean mange,
+        Boolean fleas,
+        Boolean ticks,
+        Boolean vomiting,
+        Boolean limping,
+        String other,
+        // Animal conditions
+        Boolean isVaccinated,
+        LocalDate lastVaccinationDate,
+        Boolean isVermifugated,
+        LocalDate lastVermifugationDate,
+        Boolean antiFleas,
+        LocalDate lastAntiFleasDate,
+        // Rescuer information
+        String rescuerName,
+        String rescuerPhone,
+        String rescuerDonationType
 ) {
 }

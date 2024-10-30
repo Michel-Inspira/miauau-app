@@ -24,7 +24,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AnimalController {
 
-    private AnimalService service;
+    private final AnimalService service;
 
     @GetMapping
     public ResponseEntity<List<AnimalResponse>> getAll() {
@@ -33,7 +33,8 @@ public class AnimalController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AnimalResponse> getById(@PathVariable UUID id) {
-        return ResponseEntity.ok(service.getById(id));
+        AnimalResponse response = service.getById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping
