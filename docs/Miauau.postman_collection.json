@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a74930eb-3583-4365-b169-9601b4d33539",
+		"_postman_id": "6f11e7dd-05e1-4bca-85ea-c62afa0839ba",
 		"name": "Miauau",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21397337"
@@ -70,7 +70,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Rex\",\n  \"sex\": \"M\",\n  \"age\": 5,\n  \"healthStatus\": {\n    \"health\": \"Good\",\n    \"vaccine\": \"Okay\"\n  },\n  \"others\": {\n    \"breed\": \"Labrador\",\n    \"color\": \"Black\"\n  }\n}",
+							"raw": "{\n    \"name\": \"Max\",\n    \"animalType\": \"Dog\",\n    \"sex\": \"M\",\n    \"details\": \"Friendly and energetic, found near the park\",\n    \"color\": \"Brown\",\n    \"age\": 3,\n    \"hasFIV\": false,\n    \"hasFeLV\": false,\n    \"rescueDetails\": \"Rescued by a passerby on 2024-10-25\",\n    \"rescueReport\": \"Animal was found wandering alone, no identification\",\n    \"needsCare\": \"Requires mild grooming\",\n    \"healthy\": true,\n    \"dirty\": true,\n    \"hurt\": false,\n    \"mange\": false,\n    \"fleas\": true,\n    \"ticks\": false,\n    \"vomiting\": false,\n    \"limping\": false,\n    \"other\": \"Shows signs of nervousness around loud noises\",\n    \"isVaccinated\": true,\n    \"lastVaccinationDate\": \"2024-09-15\",\n    \"isVermifugated\": true,\n    \"lastVermifugationDate\": \"2024-09-10\",\n    \"antiFleas\": true,\n    \"lastAntiFleasDate\": \"2024-09-12\",\n    \"rescuerName\": \"John Doe\",\n    \"rescuerPhone\": \"+55 11 91234-5678\",\n    \"rescuerDonationType\": \"Food and medical supplies\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -98,7 +98,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Caramelo\",\n  \"sex\": \"M\",\n  \"age\": 5,\n  \"healthStatus\": {\n    \"health\": \"Not Good\",\n    \"vaccine\": \"Okay\"\n  },\n  \"others\": {\n    \"breed\": \"Labrador\",\n    \"color\": \"Black\"\n  }\n}",
+							"raw": "{\n    \"name\": \"Caramelo\",\n    \"animalType\": \"Dog\",\n    \"sex\": \"M\",\n    \"details\": \"Traditional Brazilian dog\",\n    \"color\": \"Brown\",\n    \"age\": 3,\n    \"hasFIV\": false,\n    \"hasFeLV\": false,\n    \"rescueDetails\": \"Rescued by a passerby on 2024-10-25\",\n    \"rescueReport\": \"Animal was found wandering alone, no identification\",\n    \"needsCare\": \"Requires mild grooming\",\n    \"healthy\": true,\n    \"dirty\": true,\n    \"hurt\": false,\n    \"mange\": false,\n    \"fleas\": true,\n    \"ticks\": false,\n    \"vomiting\": false,\n    \"limping\": false,\n    \"other\": \"Shows signs of nervousness around loud noises\",\n    \"isVaccinated\": true,\n    \"lastVaccinationDate\": \"2024-09-15\",\n    \"isVermifugated\": true,\n    \"lastVermifugationDate\": \"2024-09-10\",\n    \"antiFleas\": true,\n    \"lastAntiFleasDate\": \"2024-09-12\",\n    \"rescuerName\": \"John Doe\",\n    \"rescuerPhone\": \"+55 11 91234-5678\",\n    \"rescuerDonationType\": \"Food and medical supplies\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -135,6 +135,114 @@
 								"v1",
 								"animals",
 								"{{animal_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Animal Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "{{animal_id}}",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/michel/Pictures/Capturas de tela/garto.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/animals/files/upload",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"animals",
+								"files",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Animal Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "{{animal_id}}",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/michel/Pictures/Capturas de tela/Captura de tela de 2024-10-29 23-29-59.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/animals/files/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"animals",
+								"files",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Animal Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "{{animal_id}}",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/michel/Pictures/Capturas de tela/garto.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/animals/files/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"animals",
+								"files",
+								"delete"
 							]
 						}
 					},

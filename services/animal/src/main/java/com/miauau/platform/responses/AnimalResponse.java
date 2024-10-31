@@ -1,43 +1,30 @@
 package com.miauau.platform.responses;
 
-import java.time.LocalDate;
+import com.miauau.platform.requests.HealthSituationRequest;
+import com.miauau.platform.requests.RescueRequest;
+
 import java.util.UUID;
 
 public record AnimalResponse(
-        // Animal information
         UUID id,
         String name,
         String imagePath,
-        String animalType,
-        Character sex,
-        String details,
+        String type,
+        String ageGroup,
+        String sex,
+        String pregnant,
+        boolean castrated,
         String color,
-        Integer age,
-        Boolean hasFIV,
-        Boolean hasFeLV,
-        String rescueDetails,
-        String rescueReport,
-        // Health status
+        String approximateAge,
+        boolean fiv,
+        boolean felv,
+        HealthSituationRequest healthSituation,
         String needsCare,
-        Boolean healthy,
-        Boolean dirty,
-        Boolean hurt,
-        Boolean mange,
-        Boolean fleas,
-        Boolean ticks,
-        Boolean vomiting,
-        Boolean limping,
-        String other,
-        // Animal conditions
-        Boolean isVaccinated,
-        LocalDate lastVaccinationDate,
-        Boolean isVermifugated,
-        LocalDate lastVermifugationDate,
-        Boolean antiFleas,
-        LocalDate lastAntiFleasDate,
-        // Rescuer information
-        String rescuerName,
-        String rescuerPhone,
-        String rescuerDonationType
+        String vaccinated,
+        String vaccinationDate,
+        String dewormed,
+        String dewormingDate,
+        String antiFleas,
+        RescueRequest rescue
 ) {
 }

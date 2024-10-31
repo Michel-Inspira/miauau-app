@@ -11,11 +11,8 @@ import org.springframework.validation.annotation.Validated;
 @Data
 @Builder
 @Validated
-public class AnimalConditions {
-    private String isVaccinated;
-    private String lastVaccinationDate;
-    private String isVermifugated;
-    private String lastVermifugationDate;
-    private String antiFleas;
-    private String lastAntiFleasDate;
+public class Rescuer {
+    private String name;
+    private String phone;
+    private Donation donation;
 }

@@ -23,17 +23,24 @@ public class Animal {
     private String name;
     private String imagePath;
     private String animalType;
-    private Character sex;
-    private String details;
+    private String ageGroup;
+    private String sex;
+    private String pregnant;
+    private Boolean castrated;
     private String color;
-    private Integer age;
+    private String approximateAge;
     private Boolean hasFIV;
     private Boolean hasFeLV;
-    private String rescueDetails;
-    private String rescueReport;
     private HealthStatus healthStatus;
+    private String needsCare;
+    private String vaccinated;
+    private String vaccinationDate;
+    private String dewormed;
+    private String dewormingDate;
+    private String antiFleas;
+    private String antiFleasApplicationDate;
+    private RescueInfo rescueInfo;
     private AnimalConditions animalConditions;
-    private RescuerInfo rescuerInfo;
     @CreatedDate
     private LocalDateTime createdAt;
 

@@ -12,7 +12,6 @@ import org.springframework.validation.annotation.Validated;
 @Builder
 @Validated
 public class HealthStatus {
-    private String needsCare;
     private Boolean healthy;
     private Boolean dirty;
     private Boolean hurt;
@@ -21,5 +20,6 @@ public class HealthStatus {
     private Boolean ticks;
     private Boolean vomiting;
     private Boolean limping;
-    private String other;
+    private Boolean other;
+    private String otherDescription;
 }

@@ -11,8 +11,8 @@ import org.springframework.validation.annotation.Validated;
 @Data
 @Builder
 @Validated
-public class RescuerInfo {
-    private String name;
-    private String phone;
-    private String donationType;
+public class RescueInfo {
+    private String howDidItArrive;
+    private String description;
+    private Rescuer rescuer;
 }

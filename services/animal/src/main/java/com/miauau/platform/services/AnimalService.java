@@ -3,10 +3,15 @@ package com.miauau.platform.services;
 import com.miauau.platform.exceptions.AnimalNotFoundException;
 import com.miauau.platform.models.Animal;
 import com.miauau.platform.models.AnimalConditions;
+import com.miauau.platform.models.Donation;
 import com.miauau.platform.models.HealthStatus;
-import com.miauau.platform.models.RescuerInfo;
+import com.miauau.platform.models.RescueInfo;
+import com.miauau.platform.models.Rescuer;
 import com.miauau.platform.repositories.AnimalRepository;
 import com.miauau.platform.requests.AnimalRequest;
+import com.miauau.platform.requests.DonnationRequest;
+import com.miauau.platform.requests.HealthSituationRequest;
+import com.miauau.platform.requests.ResponsibleRequest;
 import com.miauau.platform.responses.AnimalResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -68,39 +73,59 @@ public class AnimalService {
 
     private void requestToEntity(Animal animal, AnimalRequest request) {
         animal.setName(request.name());
-        animal.setAnimalType(request.animalType());
+        animal.setAnimalType(request.type());
         animal.setSex(request.sex());
-        animal.setDetails(request.details());
+        animal.setPregnant(request.pregnant());
+        animal.setCastrated(request.castrated());
         animal.setColor(request.color());
-        animal.setAge(request.age());
-        animal.setHasFIV(request.hasFIV());
-        animal.setHasFeLV(request.hasFeLV());
-        animal.setRescueDetails(request.rescueDetails());
-        animal.setRescueReport(request.rescueReport());
+        animal.setAgeGroup(request.ageGroup());
+        animal.setApproximateAge(request.approximateAge());
+        animal.setHasFIV(request.fiv());
+        animal.setHasFeLV(request.felv());
+
+        // Map health situation using builder
+        HealthSituationRequest healthSituation = request.healthSituation();
         animal.setHealthStatus(HealthStatus.builder()
-                .needsCare(request.needsCare())
-                .healthy(request.healthy())
-                .dirty(request.dirty())
-                .hurt(request.hurt())
-                .mange(request.mange())
-                .fleas(request.fleas())
-                .ticks(request.ticks())
-                .vomiting(request.vomiting())
-                .limping(request.limping())
-                .other(request.other())
+                .healthy(healthSituation.healthy())
+                .dirty(healthSituation.dirty())
+                .hurt(healthSituation.hurt())
+                .mange(healthSituation.mange())
+                .fleas(healthSituation.fleas())
+                .ticks(healthSituation.ticks())
+                .vomiting(healthSituation.vomiting())
+                .limping(healthSituation.limping())
+                .other(healthSituation.other())
+                .otherDescription(healthSituation.otherDescription())
                 .build());
+
+        // Map animal conditions using builder
         animal.setAnimalConditions(AnimalConditions.builder()
-                .isVaccinated(request.isVaccinated())
-                .lastVaccinationDate(request.lastVaccinationDate())
-                .isVermifugated(request.isVermifugated())
-                .lastVermifugationDate(request.lastVermifugationDate())
+                .isVaccinated(request.vaccinated())
+                .lastVaccinationDate(request.vaccinationDate())
+                .isVermifugated(request.dewormed())
+                .lastVermifugationDate(request.dewormingDate())
                 .antiFleas(request.antiFleas())
-                .lastAntiFleasDate(request.lastAntiFleasDate())
+                .lastAntiFleasDate(request.antiFleasApplicationDate())
                 .build());
-        animal.setRescuerInfo(RescuerInfo.builder()
-                .name(request.rescuerName())
-                .phone(request.rescuerPhone())
-                .donationType(request.rescuerDonationType())
+
+        // Map rescuer information using builders
+        ResponsibleRequest responsible = request.rescue().responsible();
+        DonnationRequest donnation = responsible.donnation();
+        animal.setRescueInfo(RescueInfo.builder()
+                .howDidItArrive(request.rescue().howDidItArrive())
+                .description(request.rescue().description())
+                .rescuer(Rescuer.builder()
+                        .name(responsible.name())
+                        .phone(responsible.phone())
+                        .donation(Donation.builder()
+                                .money(donnation.money())
+                                .food(donnation.food())
+                                .antiFleas(donnation.antiFleas())
+                                .timeToHelp(donnation.timeToHelp())
+                                .other(donnation.other())
+                                .otherDescription(donnation.otherDescription())
+                                .build())
+                        .build())
                 .build());
     }
 }
