@@ -9,6 +9,12 @@ spring:
       port: 27017
       database: animal
       authentication-database: admin
-
-file:
-  uploadDir: ${IMAGE-DIR-PATH}
+  cloud:
+    azure:
+      storage:
+        endpoint: ${AZURE_STORAGE_ENDPOINT}
+        connection-string: ${AZURE_STORAGE_CONNECTION_STRING}
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 20MB
