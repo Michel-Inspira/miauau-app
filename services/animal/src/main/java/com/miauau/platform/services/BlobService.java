@@ -40,12 +40,15 @@ public class BlobService {
         try {
             BlobClient blobClient =
                     blobServiceClient
-                            .getBlobContainerClient("images")
+                            .getBlobContainerClient("animals")
                             .getBlobClient(fileName);
-            blobClient.upload(file.getInputStream(), false);
+
+            if (!blobClient.exists()) {
+                blobClient.upload(file.getInputStream(), false);
+            }
 
             String blobName = blobClient.getBlobName();
-            String imagePath = azureStorageEndpoint + "/images/" + blobName;
+            String imagePath = azureStorageEndpoint + "/animals/" + blobName;
 
             animal.setImagePath(imagePath);
             animalRepository.save(animal);

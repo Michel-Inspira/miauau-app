@@ -34,3 +34,5 @@ build/
 
 ### ENV Files ###
 .env
+
+/.containers/
