@@ -94,8 +94,16 @@ services:
     volumes:
       - ./.containers/blob-storage/data:/data
     ports:
-        - "10000:10000"
+      - "10000:10000"
     command: "azurite-blob --blobHost 0.0.0.0 -l /data"
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - microservices-net
 
 networks:
   microservices-net:
