@@ -2,7 +2,6 @@ package com.miauau.platform.services;
 
 import com.miauau.platform.exceptions.AnimalNotFoundException;
 import com.miauau.platform.models.Animal;
-import com.miauau.platform.models.AnimalConditions;
 import com.miauau.platform.models.Donation;
 import com.miauau.platform.models.HealthStatus;
 import com.miauau.platform.models.RescueInfo;
@@ -82,6 +81,13 @@ public class AnimalService {
         animal.setApproximateAge(request.approximateAge());
         animal.setHasFIV(request.fiv());
         animal.setHasFeLV(request.felv());
+        animal.setNeedsCare(request.needsCare());
+        animal.setAntiFleas(request.antiFleas());
+        animal.setAntiFleasApplicationDate(request.antiFleasApplicationDate());
+        animal.setDewormed(request.dewormed());
+        animal.setDewormingDate(request.dewormingDate());
+        animal.setVaccinated(request.vaccinated());
+        animal.setVaccinationDate(request.vaccinationDate());
 
         // Map health situation using builder
         HealthSituationRequest healthSituation = request.healthSituation();
@@ -96,16 +102,6 @@ public class AnimalService {
                 .limping(healthSituation.limping())
                 .other(healthSituation.other())
                 .otherDescription(healthSituation.otherDescription())
-                .build());
-
-        // Map animal conditions using builder
-        animal.setAnimalConditions(AnimalConditions.builder()
-                .isVaccinated(request.vaccinated())
-                .lastVaccinationDate(request.vaccinationDate())
-                .isVermifugated(request.dewormed())
-                .lastVermifugationDate(request.dewormingDate())
-                .antiFleas(request.antiFleas())
-                .lastAntiFleasDate(request.antiFleasApplicationDate())
                 .build());
 
         // Map rescuer information using builders

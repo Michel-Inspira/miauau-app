@@ -25,6 +25,7 @@ public record AnimalResponse(
         String dewormed,
         String dewormingDate,
         String antiFleas,
+        String antiFleasApplicationDate,
         RescueRequest rescue
 ) {
 }

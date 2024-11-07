@@ -1,7 +1,6 @@
 package com.miauau.platform.services;
 
 import com.miauau.platform.models.Animal;
-import com.miauau.platform.models.AnimalConditions;
 import com.miauau.platform.models.Donation;
 import com.miauau.platform.models.HealthStatus;
 import com.miauau.platform.models.RescueInfo;
@@ -30,8 +29,16 @@ public class AnimalMapper {
                 .color(request.color())
                 .ageGroup(request.ageGroup())
                 .approximateAge(request.approximateAge())
+                .needsCare(request.needsCare())
                 .hasFIV(request.fiv())
                 .hasFeLV(request.felv())
+                .needsCare(request.needsCare())
+                .antiFleas(request.antiFleas())
+                .antiFleasApplicationDate(request.antiFleasApplicationDate())
+                .dewormed(request.dewormed())
+                .dewormingDate(request.dewormingDate())
+                .vaccinated(request.vaccinated())
+                .vaccinationDate(request.vaccinationDate())
                 .healthStatus(HealthStatus.builder()
                         .healthy(request.healthSituation().healthy())
                         .dirty(request.healthSituation().dirty())
@@ -43,14 +50,6 @@ public class AnimalMapper {
                         .limping(request.healthSituation().limping())
                         .other(request.healthSituation().other())
                         .otherDescription(request.healthSituation().otherDescription())
-                        .build())
-                .animalConditions(AnimalConditions.builder()
-                        .isVaccinated(request.vaccinated())
-                        .lastVaccinationDate(request.vaccinationDate())
-                        .isVermifugated(request.dewormed())
-                        .lastVermifugationDate(request.dewormingDate())
-                        .antiFleas(request.antiFleas())
-                        .lastAntiFleasDate(request.antiFleasApplicationDate())
                         .build())
                 .rescueInfo(RescueInfo.builder()
                         .howDidItArrive(request.rescue().howDidItArrive())
@@ -76,7 +75,7 @@ public class AnimalMapper {
             return null;
         }
         return new AnimalResponse(
-                animal.getId(), // Assuming AnimalResponse expects an ID
+                animal.getId(),
                 animal.getName(),
                 animal.getImagePath(),
                 animal.getAnimalType(),
@@ -100,12 +99,13 @@ public class AnimalMapper {
                         animal.getHealthStatus().getOther(),
                         animal.getHealthStatus().getOtherDescription()
                 ),
-                animal.getAnimalConditions().getIsVaccinated(),
-                animal.getAnimalConditions().getLastVaccinationDate(),
-                animal.getAnimalConditions().getIsVermifugated(),
-                animal.getAnimalConditions().getLastVermifugationDate(),
-                animal.getAnimalConditions().getAntiFleas(),
-                animal.getAnimalConditions().getLastAntiFleasDate(),
+                animal.getNeedsCare(),
+                animal.getVaccinated(),
+                animal.getVaccinationDate(),
+                animal.getDewormed(),
+                animal.getDewormingDate(),
+                animal.getAntiFleas(),
+                animal.getAntiFleasApplicationDate(),
                 new RescueRequest(
                         animal.getRescueInfo().getHowDidItArrive(),
                         animal.getRescueInfo().getDescription(),

@@ -40,7 +40,6 @@ public class Animal {
     private String antiFleas;
     private String antiFleasApplicationDate;
     private RescueInfo rescueInfo;
-    private AnimalConditions animalConditions;
     @CreatedDate
     private LocalDateTime createdAt;
 
