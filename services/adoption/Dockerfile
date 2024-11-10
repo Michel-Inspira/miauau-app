@@ -15,4 +15,4 @@ FROM ${RUNTIME_IMAGE} as runner
 WORKDIR /app
 EXPOSE 8092
 COPY --from=builder /app/target/adoption-0.0.1-SNAPSHOT.jar /app/adoption.jar
-ENTRYPOINT ["java", "-Dspring.profiles.active=docker", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/adoption.jar"]
+ENTRYPOINT ["java", "-jar", "/app/adoption.jar"]
