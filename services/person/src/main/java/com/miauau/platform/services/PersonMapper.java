@@ -1,9 +1,9 @@
 package com.miauau.platform.services;
 
+import com.miauau.platform.dto.person.PersonResponse;
 import com.miauau.platform.models.Address;
 import com.miauau.platform.models.Person;
 import com.miauau.platform.requests.PersonRequest;
-import com.miauau.platform.responses.PersonResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +19,10 @@ public class PersonMapper {
                 person.getRole(),
                 person.getEmail(),
                 person.getPhone(),
+                person.getCpf(),
+                person.getRg(),
+                person.getBirthDate(),
+                person.getLandline(),
                 person.getAddress().getZipCode(),
                 person.getAddress().getStreet(),
                 person.getAddress().getNumber(),
@@ -34,6 +38,10 @@ public class PersonMapper {
                 .role(request.role())
                 .email(request.email())
                 .phone(request.phone())
+                .cpf(request.cpf())
+                .rg(request.rg())
+                .birthDate(request.birthDate())
+                .landline(request.landline())
                 .address(Address.builder()
                         .zipCode(request.zipCode())
                         .street(request.street())

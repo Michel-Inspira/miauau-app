@@ -2,6 +2,8 @@ package com.miauau.platform.requests;
 
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
+
 public record PersonRequest(
         @NotNull(message = "Name is required")
         String name,
@@ -20,6 +22,13 @@ public record PersonRequest(
         String number,
         String complement,
         @NotNull(message = "Neighborhood is required")
-        String neighborhood
+        String neighborhood,
+        @NotNull(message = "CPF is required")
+        String cpf,
+        @NotNull(message = "RG is required")
+        String rg,
+        @NotNull(message = "Birthday is required")
+        LocalDate birthDate,
+        String landline
 ) {
 }

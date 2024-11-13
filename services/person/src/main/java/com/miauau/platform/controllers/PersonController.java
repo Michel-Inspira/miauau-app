@@ -1,7 +1,7 @@
 package com.miauau.platform.controllers;
 
+import com.miauau.platform.dto.person.PersonResponse;
 import com.miauau.platform.requests.PersonRequest;
-import com.miauau.platform.responses.PersonResponse;
 import com.miauau.platform.services.PersonService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

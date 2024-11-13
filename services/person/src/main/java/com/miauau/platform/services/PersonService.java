@@ -1,11 +1,11 @@
 package com.miauau.platform.services;
 
+import com.miauau.platform.dto.person.PersonResponse;
 import com.miauau.platform.exception.PersonNotFoundException;
 import com.miauau.platform.models.Address;
 import com.miauau.platform.models.Person;
 import com.miauau.platform.repositories.PersonRepository;
 import com.miauau.platform.requests.PersonRequest;
-import com.miauau.platform.responses.PersonResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +75,10 @@ public class PersonService {
         entity.setRole(request.role());
         entity.setEmail(request.email());
         entity.setPhone(request.phone());
+        entity.setCpf(request.cpf());
+        entity.setRg(request.rg());
+        entity.setBirthDate(request.birthDate());
+        entity.setLandline(request.landline());
         entity.setAddress(Address.builder()
                 .zipCode(request.zipCode())
                 .street(request.street())
