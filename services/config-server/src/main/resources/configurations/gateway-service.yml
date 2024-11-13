@@ -18,7 +18,7 @@ spring:
         - id: adoption-service
           uri: lb:http://ADOPTION-SERVICE
           predicates:
-            - Path=/api/v1/adoption/**
+            - Path=/api/v1/adoptions/**
         - id: management-service
           uri: lb:http://MANAGEMENT-SERVICE
           predicates:
