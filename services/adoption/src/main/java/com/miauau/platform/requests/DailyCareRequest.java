@@ -7,6 +7,6 @@ public record DailyCareRequest(
         boolean hasPetCarrier,
         int dailyWalks,
         String timeAlone,
-        FoodTypeRequest foodType
+        String foodType
 ) {
 }

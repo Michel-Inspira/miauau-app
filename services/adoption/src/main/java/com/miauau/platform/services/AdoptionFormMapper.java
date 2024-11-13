@@ -44,30 +44,12 @@ public class AdoptionFormMapper {
     }
     private Map<String, Object> residenceRequestToMap(ResidenceRequest residenceRequest) {
         Map<String, Object> map = new HashMap<>();
-
-        String selectedSituation = "";
-        if (residenceRequest.own()) {
-            selectedSituation = "own";
-        } else if (residenceRequest.rent()) {
-            selectedSituation = "rent";
-        } else if (residenceRequest.inherited()) {
-            selectedSituation = "inherited";
-        }
-        map.put("situation", selectedSituation);
-
-        String selectedType = "";
-        ResidenceTypeRequest type = residenceRequest.type();
-        if (type.house()) {
-            selectedType = "house";
-        } else if (type.apartment()) {
-            selectedType = "apartment";
-        } else if (type.grange()) {
-            selectedType = "grange";
-        } else if (type.other()) {
-            selectedType = "other";
-        }
+        String selectedType = residenceRequest.type();
         map.put("type", selectedType);
-        map.put("otherTypeDescription", type.otherDescription());
+        if(selectedType.equals("other")){
+            map.put("otherTypeDescription", residenceRequest.otherDescription());
+        }
+        map.put("situation", residenceRequest.situation());
         return map;
     }
     private Map<String, Object> housingDetailsToMap(HousingDetailsRequest request) {
@@ -155,17 +137,7 @@ public class AdoptionFormMapper {
         map.put("hasPetCarrier", request.hasPetCarrier());
         map.put("dailyWalks", request.dailyWalks());
         map.put("timeAlone", request.timeAlone());
-        FoodTypeRequest foodType = request.foodType();
-        String selectedFoodType = "";
-        if(foodType.animal()){
-            selectedFoodType = "animal";
-        } else if(foodType.human()){
-            selectedFoodType = "human";
-        }else if(foodType.other()){
-            selectedFoodType = "other";
-            map.put("foodTypeOtherDescription", foodType.otherDescription());
-        }
-        map.put("foodType", selectedFoodType);
+        map.put("foodType", request.foodType());
         return map;
     }
     public Map<String, Object> attitudesTowardsTheAnimalRequestToMap(AttitudesTowardsTheAnimalRequest request) {
