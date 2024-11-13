@@ -18,7 +18,17 @@ import java.util.UUID;
 public class CandidateForm {
 
     @Id
-    private UUID id;
+    private String id = UUID.randomUUID().toString();
     private String personId;
-    private Map<String, String> formFields;
+    private Map<String, Object> occupation;
+    private Map<String, Object> residence;
+    private Map<String, Object> housingDetails;
+    private Map<String, Object> coexistence;
+    private Map<String, Object> previousAnimals;
+    private String adoptionMotivation;
+    private String adoptionMotivationDescription;
+    private Map<String, Map<String, Boolean>> animalsOfInterest;
+    private Map<String, Object> dailyCare;
+    private Map<String, Object> attitudesTowardsTheAnimal;
+    private Map<String, Boolean> agreements;
 }
