@@ -56,4 +56,9 @@ public class AnimalController {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/getNotAdoptedByOng/{ongId}")
+    public ResponseEntity<List<AnimalResponse>> getNotAdoptedByOng(@PathVariable String ongId) {
+        return ResponseEntity.ok(service.getNotAdoptedByOng(ongId));
+    }
 }

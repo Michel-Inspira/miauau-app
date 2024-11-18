@@ -27,7 +27,7 @@ public class CandidateForm {
     private Map<String, Object> previousAnimals;
     private String adoptionMotivation;
     private String adoptionMotivationDescription;
-    private Map<String, Map<String, Boolean>> animalsOfInterest;
+    private Map<String, Object> animalsOfInterest;
     private Map<String, Object> dailyCare;
     private Map<String, Object> attitudesTowardsTheAnimal;
     private Map<String, Boolean> agreements;

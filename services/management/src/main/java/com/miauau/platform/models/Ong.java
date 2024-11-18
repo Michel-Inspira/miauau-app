@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -15,10 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ong {
 
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
     private String name;
-    private String occupation;
     private String email;
-    private Finance finance;
-    private Resources resources;
 }

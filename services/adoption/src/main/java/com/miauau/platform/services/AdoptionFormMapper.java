@@ -101,31 +101,35 @@ public class AdoptionFormMapper {
         }
         return map;
     }
-    private Map<String, Map<String, Boolean>> animalsOfInterestRequestToMap(AdoptionFormRequest request) {
-        Map<String, Map<String, Boolean>> map = new HashMap<>();
-        if(request.animals().animalsOfInterest().dog()){
-            Map<String, Boolean> dogs = new HashMap<>();
-            dogs.put("male", request.interest().dog().sex().male());
-            dogs.put("female", request.interest().dog().sex().female());
-            dogs.put("small", request.interest().dog().size().small());
-            dogs.put("medium", request.interest().dog().size().medium());
-            dogs.put("big", request.interest().dog().size().big());
-            dogs.put("puppy", request.interest().dog().ageGroup().puppy());
-            dogs.put("adult", request.interest().dog().ageGroup().adult());
-            dogs.put("elderly", request.interest().dog().ageGroup().elderly());
-            map.put("dog", dogs);
-        }
-        if(request.animals().animalsOfInterest().cat()){
-            Map<String, Boolean> cats = new HashMap<>();
-            cats.put("male", request.interest().cat().sex().male());
-            cats.put("female", request.interest().cat().sex().female());
-            cats.put("small", request.interest().cat().size().small());
-            cats.put("medium", request.interest().cat().size().medium());
-            cats.put("big", request.interest().cat().size().big());
-            cats.put("puppy", request.interest().cat().ageGroup().puppy());
-            cats.put("adult", request.interest().cat().ageGroup().adult());
-            cats.put("elderly", request.interest().cat().ageGroup().elderly());
-            map.put("cat", cats);
+    private Map<String, Object> animalsOfInterestRequestToMap(AdoptionFormRequest request) {
+        Map<String, Object> map = new HashMap<>();
+        if(request.animals().wantSpecificAnimal()){
+            map.put("specificAnimal", request.animals().specificAnimal());
+        } else {
+            if(request.animals().animalsOfInterest().dog()){
+                Map<String, Boolean> dogs = new HashMap<>();
+                dogs.put("male", request.interest().dog().sex().male());
+                dogs.put("female", request.interest().dog().sex().female());
+                dogs.put("small", request.interest().dog().size().small());
+                dogs.put("medium", request.interest().dog().size().medium());
+                dogs.put("big", request.interest().dog().size().big());
+                dogs.put("puppy", request.interest().dog().ageGroup().puppy());
+                dogs.put("adult", request.interest().dog().ageGroup().adult());
+                dogs.put("elderly", request.interest().dog().ageGroup().elderly());
+                map.put("dog", dogs);
+            }
+            if(request.animals().animalsOfInterest().cat()){
+                Map<String, Boolean> cats = new HashMap<>();
+                cats.put("male", request.interest().cat().sex().male());
+                cats.put("female", request.interest().cat().sex().female());
+                cats.put("small", request.interest().cat().size().small());
+                cats.put("medium", request.interest().cat().size().medium());
+                cats.put("big", request.interest().cat().size().big());
+                cats.put("puppy", request.interest().cat().ageGroup().puppy());
+                cats.put("adult", request.interest().cat().ageGroup().adult());
+                cats.put("elderly", request.interest().cat().ageGroup().elderly());
+                map.put("cat", cats);
+            }
         }
         return map;
     }
