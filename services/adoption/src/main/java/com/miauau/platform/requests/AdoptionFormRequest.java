@@ -1,7 +1,14 @@
 package com.miauau.platform.requests;
 
 public record AdoptionFormRequest(
-        String personId
-        // TODO: Add more fields
+        PersonalInformationRequest personalInformation,
+        SocioeconomicProfileRequest socioeconomicProfile,
+        HousingDetailsRequest housingDetails,
+        CoexistenceRequest coexistence,
+        AnimalsRequest animals,
+        InterestRequest interest,
+        DailyCareRequest dailyCare,
+        AttitudesTowardsTheAnimalRequest attitudesTowardsTheAnimal,
+        AgreementsRequest agreements
 ) {
 }

@@ -1,5 +1,6 @@
-package com.miauau.platform.responses;
+package com.miauau.platform.dto.person;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public record PersonResponse(
@@ -9,6 +10,10 @@ public record PersonResponse(
         String role,
         String email,
         String phone,
+        String cpf,
+        String rg,
+        LocalDate birthDate,
+        String landline,
         // Address information
         String zipCode,
         String street,

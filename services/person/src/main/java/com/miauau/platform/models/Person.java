@@ -12,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -29,6 +30,10 @@ public class Person {
     private String role;
     private String email;
     private String phone;
+    private String cpf;
+    private String rg;
+    private LocalDate birthDate;
+    private String landline;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;

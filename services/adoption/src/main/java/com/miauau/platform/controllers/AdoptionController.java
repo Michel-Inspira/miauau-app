@@ -1,5 +1,6 @@
 package com.miauau.platform.controllers;
 
+import com.miauau.platform.models.CandidateForm;
 import com.miauau.platform.requests.AdoptionFormRequest;
 import com.miauau.platform.services.AdoptionService;
 import jakarta.validation.Valid;
@@ -19,10 +20,10 @@ public class AdoptionController {
     private final AdoptionService service;
 
     @PostMapping
-    public ResponseEntity<?> createAdoptionForm(
+    public ResponseEntity<CandidateForm> createAdoptionForm(
             @RequestBody @Valid AdoptionFormRequest request
     ) {
-        service.createAdoptionForm(request);
-        return new ResponseEntity<>(null, HttpStatus.CREATED);
+        CandidateForm response = service.createAdoptionForm(request);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

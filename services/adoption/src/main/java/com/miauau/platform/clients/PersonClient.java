@@ -1,7 +1,7 @@
 package com.miauau.platform.clients;
 
+import com.miauau.platform.dto.person.PersonResponse;
 import com.miauau.platform.requests.PersonRequest;
-import com.miauau.platform.responses.PersonResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 

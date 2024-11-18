@@ -19,6 +19,8 @@ public record AnimalRequest(
         String dewormingDate,
         String antiFleas,
         String antiFleasApplicationDate,
-        RescueRequest rescue
+        RescueRequest rescue,
+        boolean isAdopted,
+        String ongId
 ) {
 }

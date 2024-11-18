@@ -67,6 +67,8 @@ public class AnimalMapper {
                                         .build())
                                 .build())
                         .build())
+                .isAdopted(request.isAdopted())
+                .ongId(request.ongId())
                 .build();
     }
 
@@ -121,7 +123,9 @@ public class AnimalMapper {
                                         animal.getRescueInfo().getRescuer().getDonation().getOtherDescription()
                                 )
                         )
-                )
+                ),
+                animal.isAdopted(),
+                animal.getOngId()
         );
     }
 }

@@ -70,6 +70,13 @@ public class AnimalService {
         }
     }
 
+    public List<AnimalResponse> getNotAdoptedByOng(String ongId) {
+        return repository.findByIsAdoptedFalseAndOngId(ongId)
+                .stream()
+                .map(mapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
     private void requestToEntity(Animal animal, AnimalRequest request) {
         animal.setName(request.name());
         animal.setAnimalType(request.type());
@@ -123,6 +130,8 @@ public class AnimalService {
                                 .build())
                         .build())
                 .build());
+        animal.setAdopted(request.isAdopted());
+        animal.setOngId(request.ongId());
     }
 }
 
