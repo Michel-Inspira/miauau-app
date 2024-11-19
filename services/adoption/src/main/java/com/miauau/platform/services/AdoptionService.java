@@ -1,6 +1,7 @@
 package com.miauau.platform.services;
 
 import com.miauau.platform.clients.PersonClient;
+import com.miauau.platform.dto.adoption.AdoptionCandidateResponse;
 import com.miauau.platform.dto.person.PersonResponse;
 import com.miauau.platform.kafka.AdoptionProducer;
 import com.miauau.platform.models.CandidateForm;
@@ -10,6 +11,9 @@ import com.miauau.platform.requests.PersonRequest;
 import com.miauau.platform.requests.PersonalInformationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +39,13 @@ public class AdoptionService {
 //                        request.getName())
 //        );
         return candidateForm;
+    }
+
+    public List<AdoptionCandidateResponse> getAdoptionCandidatesByAnimalId(String animalId) {
+        return repository.findBySpecificAnimal(animalId)
+                .stream()
+                .map(mapper::toResponse)
+                .collect(Collectors.toList());
     }
 
     private PersonRequest getPersonRequestFromAdoptionForm(AdoptionFormRequest request) {

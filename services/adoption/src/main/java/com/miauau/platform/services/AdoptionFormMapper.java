@@ -1,16 +1,24 @@
 package com.miauau.platform.services;
 
+import com.miauau.platform.clients.PersonClient;
+import com.miauau.platform.dto.adoption.AdoptionCandidateResponse;
 import com.miauau.platform.dto.person.PersonResponse;
 import com.miauau.platform.models.CandidateForm;
 import com.miauau.platform.requests.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class AdoptionFormMapper {
+    private final PersonClient personClient;
+
     public CandidateForm toEntity(AdoptionFormRequest request, PersonResponse person){
         if (request == null) {
             return null;
@@ -133,7 +141,7 @@ public class AdoptionFormMapper {
         }
         return map;
     }
-    public Map<String, Object> dailyCareRequestToMap(DailyCareRequest request) {
+    private Map<String, Object> dailyCareRequestToMap(DailyCareRequest request) {
         Map<String, Object> map = new HashMap<>();
         map.put("responsibleForCare", request.responsibleForCare());
         map.put("responsibleForCareInCaseOfTravel", request.responsibleForCareInCaseOfTravel());
@@ -144,7 +152,7 @@ public class AdoptionFormMapper {
         map.put("foodType", request.foodType());
         return map;
     }
-    public Map<String, Object> attitudesTowardsTheAnimalRequestToMap(AttitudesTowardsTheAnimalRequest request) {
+    private Map<String, Object> attitudesTowardsTheAnimalRequestToMap(AttitudesTowardsTheAnimalRequest request) {
         Map<String, Object> map = new HashMap<>();
         map.put("getsLost", request.getsLost());
         map.put("getsSickOrAccident", request.getsSickOrAccident());
@@ -155,7 +163,7 @@ public class AdoptionFormMapper {
         map.put("ifYouHaveAChild", request.ifYouHaveAChild());
         return map;
     }
-    public Map<String, Boolean> agreementsRequestToMap(AgreementsRequest request) {
+    private Map<String, Boolean> agreementsRequestToMap(AgreementsRequest request) {
         Map<String, Boolean> map = new HashMap<>();
         map.put("certaintyOfAdoption", request.certaintyOfAdoption());
         map.put("awareOfTheImportanceOfNeuteringTheAnimal", request.awareOfTheImportanceOfNeuteringTheAnimal());
@@ -169,5 +177,56 @@ public class AdoptionFormMapper {
         map.put("videoPresentation", request.videoPresentation());
         return map;
     }
+    public AdoptionCandidateResponse toResponse(CandidateForm candidate){
+        if (candidate == null) {
+            return null;
+        }
 
+        PersonResponse person = personClient.getPersonById(UUID.fromString(candidate.getPersonId()));
+        return new AdoptionCandidateResponse(
+                candidate.getId(),
+                person.name(),
+                this.calculateAge(person.birthDate()),
+                this.getOccupation(candidate.getOccupation()),
+                this.getLivingSituation(candidate.getCoexistence())
+        );
+    }
+    private String calculateAge(LocalDate birthDate) {
+        if (birthDate == null) {
+            return "? anos";
+        }
+        return Period.between(birthDate, LocalDate.now()).getYears() + " anos";
+    }
+    private String getOccupation(Map<String, Object> occupation) {
+        String occupationStr = "";
+        if (occupation != null) {
+            try {
+                Boolean working = (Boolean) occupation.get("working");
+                Boolean studying = (Boolean) occupation.get("studying");
+                Boolean unemployed = (Boolean) occupation.get("unemployed");
+                Boolean other = (Boolean) occupation.get("other");
+                if (working && studying) {
+                    occupationStr = "Trabalha e estuda";
+                } else if (working) {
+                    occupationStr = "Trabalha";
+                } else if (studying) {
+                    occupationStr = "Estuda";
+                } else if (unemployed) {
+                    occupationStr = "Desempregado";
+                } else if (other) {
+                    occupationStr = (String) occupation.get("otherDescription");
+                }
+            } catch (Exception ignored) {}
+        }
+        return occupationStr;
+    }
+    private String getLivingSituation(Map<String, Object> coexistence) {
+        if (coexistence != null) {
+            Object livesAlone = coexistence.get("livesAlone");
+            if (livesAlone instanceof Boolean) {
+                return (Boolean)livesAlone ? "Mora sozinho" : "Não mora sozinho";
+            }
+        }
+        return "";
+    }
 }
