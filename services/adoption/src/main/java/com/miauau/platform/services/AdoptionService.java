@@ -2,7 +2,9 @@ package com.miauau.platform.services;
 
 import com.miauau.platform.clients.PersonClient;
 import com.miauau.platform.dto.adoption.AdoptionCandidateResponse;
+import com.miauau.platform.dto.adoption.DetailedAdoptionCandidateResponse;
 import com.miauau.platform.dto.person.PersonResponse;
+import com.miauau.platform.exception.AdoptionCandidateNotFoundException;
 import com.miauau.platform.kafka.AdoptionProducer;
 import com.miauau.platform.models.CandidateForm;
 import com.miauau.platform.repositories.AdoptionFormRepository;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.lang.String.format;
 
 @Service
 @RequiredArgsConstructor
@@ -46,6 +50,14 @@ public class AdoptionService {
                 .stream()
                 .map(mapper::toResponse)
                 .collect(Collectors.toList());
+    }
+
+    public DetailedAdoptionCandidateResponse getById(String candidateId) {
+        CandidateForm candidate = repository.findById(candidateId)
+                .orElseThrow(() -> new AdoptionCandidateNotFoundException(
+                        format("Adoption candidate with id %s not found", candidateId))
+                );
+        return mapper.toDetailedResponse(candidate);
     }
 
     private PersonRequest getPersonRequestFromAdoptionForm(AdoptionFormRequest request) {

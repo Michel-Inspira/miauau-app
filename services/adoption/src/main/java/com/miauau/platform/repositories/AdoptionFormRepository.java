@@ -5,9 +5,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface AdoptionFormRepository extends MongoRepository<CandidateForm, UUID> {
+public interface AdoptionFormRepository extends MongoRepository<CandidateForm, String> {
     @Query("{ 'animalsOfInterest.specificAnimal': ?0 }")
     List<CandidateForm> findBySpecificAnimal(String specificAnimal);
 }
