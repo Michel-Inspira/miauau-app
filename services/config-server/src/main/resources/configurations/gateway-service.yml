@@ -1,5 +1,7 @@
 server:
   port: 8222
+frontend:
+  url: ${FRONTEND_URL:http://localhost:3000}
 spring:
   cloud:
     gateway:

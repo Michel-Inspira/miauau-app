@@ -18,3 +18,7 @@ spring:
     multipart:
       max-file-size: 2MB
       max-request-size: 20MB
+file:
+  upload-dir: ${IMAGES_DIR}
+api:
+  url: ${API_URL}
