@@ -88,15 +88,6 @@ services:
       - "1080:80" # UI
       - "1025:25" # SMTP Server
 
-  blob-storage:
-    image: mcr.microsoft.com/azure-storage/azurite
-    container_name: ms_blob_storage
-    volumes:
-      - ./.containers/blob-storage/data:/data
-    ports:
-      - "10000:10000"
-    command: "azurite-blob --blobHost 0.0.0.0 -l /data"
-
   zipkin:
     container_name: zipkin
     image: openzipkin/zipkin
