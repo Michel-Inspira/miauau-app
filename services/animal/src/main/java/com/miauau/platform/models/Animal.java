@@ -20,6 +20,7 @@ public class Animal {
 
     @Id
     private UUID id;
+    private Integer animalNumber;
     private String name;
     private String imagePath;
     private String animalType;
