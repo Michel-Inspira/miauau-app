@@ -7,6 +7,7 @@ import java.util.UUID;
 
 public record AnimalResponse(
         UUID id,
+        Integer animalNumber,
         String name,
         String imagePath,
         String type,

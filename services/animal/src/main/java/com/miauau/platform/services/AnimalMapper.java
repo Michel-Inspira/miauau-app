@@ -78,6 +78,7 @@ public class AnimalMapper {
         }
         return new AnimalResponse(
                 animal.getId(),
+                animal.getAnimalNumber(),
                 animal.getName(),
                 animal.getImagePath(),
                 animal.getAnimalType(),
