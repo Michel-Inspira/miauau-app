@@ -1,8 +1,26 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://eager-skylark-shortly.ngrok-free.app/realms/miauauth
+      client:
+        registration:
+          keycloak:
+            client-id: gateway
+            client-secret: INlOLMQZtHlQd1y5P4zoydfWhXfXiioP
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: https://eager-skylark-shortly.ngrok-free.app/realms/miauauth
 server:
   port: 8222
 frontend:
   url: ${FRONTEND_URL:http://localhost:3000}
-spring:
+keycloak:
+  url: ${KEYCLOAK_URL:https://eager-skylark-shortly.ngrok-free.app/realms/miauauth}
   cloud:
     gateway:
       discovery:
@@ -13,20 +31,29 @@ spring:
           uri: lb:http://ANIMAL-SERVICE
           predicates:
             - Path=/api/v1/animals/**
+          filters:
+            - TokenRelay
         - id: person-service
           uri: lb:http://PERSON-SERVICE
           predicates:
             - Path=/api/v1/persons/**
+          filters:
+            - TokenRelay
         - id: adoption-service
           uri: lb:http://ADOPTION-SERVICE
           predicates:
             - Path=/api/v1/adoptions/**
+          filters:
+            - TokenRelay
         - id: management-service
           uri: lb:http://MANAGEMENT-SERVICE
           predicates:
             - Path=/api/v1/managements/**
+          filters:
+            - TokenRelay
         - id: event-service
           uri: lb:http://EVENT-SERVICE
           predicates:
             - Path=/api/v1/events/**
-  #        Definir demais serviços aqui
+          filters:
+            - TokenRelay
