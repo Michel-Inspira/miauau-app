@@ -28,6 +28,12 @@ public class AdoptionController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @GetMapping
+    public ResponseEntity<List<AdoptionCandidateResponse>> getAdoptionCandidates() {
+        List<AdoptionCandidateResponse> response = service.getAll();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @GetMapping("/specific-animal/{animalId}")
     public ResponseEntity<List<AdoptionCandidateResponse>> getAdoptionCandidatesByAnimalId(@PathVariable String animalId) {
         List<AdoptionCandidateResponse> response = service.getAdoptionCandidatesByAnimalId(animalId);

@@ -79,4 +79,11 @@ public class AdoptionService {
                 personalInfo.identification().landline()
         );
     }
+
+    public List<AdoptionCandidateResponse> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toResponse)
+                .collect(Collectors.toList());
+    }
 }

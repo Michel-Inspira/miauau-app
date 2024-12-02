@@ -356,7 +356,7 @@ public class AdoptionFormMapper {
         animals.put("adoptionMotivationDescription", candidate.getAdoptionMotivationDescription());
 
         String specificAnimalId = MapUtils.tryGetStringValue(animalsOfInterestData, "specificAnimal");
-        boolean wantSpecificAnimal = !specificAnimalId.isEmpty();
+        boolean wantSpecificAnimal = specificAnimalId!=null && !specificAnimalId.isEmpty();
         animals.put("wantSpecificAnimal", wantSpecificAnimal);
         animals.put("specificAnimal", tryGetSpecificAnimalName(specificAnimalId));
 
