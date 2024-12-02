@@ -60,6 +60,17 @@ public class AnimalService {
         return mapper.toResponse(animal);
     }
 
+    public AnimalResponse adopt(UUID id, boolean newAdoptionStatus) {
+        Animal animal = repository.findById(id)
+                .orElseThrow(() -> new AnimalNotFoundException(
+                        format("Cannot updated animal adoption status: Animal with id %s not found", id))
+                );
+        animal.setAdopted(newAdoptionStatus);
+        repository.save(animal);
+
+        return mapper.toResponse(animal);
+    }
+
     public void delete(UUID id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);

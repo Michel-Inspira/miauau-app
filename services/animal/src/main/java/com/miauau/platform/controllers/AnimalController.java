@@ -51,6 +51,13 @@ public class AnimalController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PutMapping("/adopt/{id}")
+    public ResponseEntity<AnimalResponse> adopt(
+            @PathVariable UUID id, @RequestBody @Valid boolean newAdoptionStatus) {
+        AnimalResponse response = service.adopt(id, newAdoptionStatus);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         service.delete(id);
