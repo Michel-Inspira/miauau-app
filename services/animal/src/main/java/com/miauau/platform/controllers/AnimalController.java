@@ -58,6 +58,13 @@ public class AnimalController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PutMapping("/adoption-event/{id}")
+    public ResponseEntity<AnimalResponse> adoptionEvent(
+            @PathVariable UUID id, @RequestBody @Valid boolean newAdoptionEventStatus) {
+        AnimalResponse response = service.adoptionEvent(id, newAdoptionEventStatus);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         service.delete(id);

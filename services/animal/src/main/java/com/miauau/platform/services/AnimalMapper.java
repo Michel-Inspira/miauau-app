@@ -68,6 +68,7 @@ public class AnimalMapper {
                                 .build())
                         .build())
                 .isAdopted(request.isAdopted())
+                .isAtEvent(request.isAtEvent())
                 .ongId(request.ongId())
                 .build();
     }
@@ -126,6 +127,7 @@ public class AnimalMapper {
                         )
                 ),
                 animal.isAdopted(),
+                animal.isAtEvent(),
                 animal.getOngId()
         );
     }

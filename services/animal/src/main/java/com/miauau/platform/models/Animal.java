@@ -42,6 +42,7 @@ public class Animal {
     private String antiFleasApplicationDate;
     private RescueInfo rescueInfo;
     private boolean isAdopted = false;
+    private boolean isAtEvent;
     private String ongId;
     @CreatedDate
     private LocalDateTime createdAt;

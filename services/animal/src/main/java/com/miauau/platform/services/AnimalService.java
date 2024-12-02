@@ -71,6 +71,17 @@ public class AnimalService {
         return mapper.toResponse(animal);
     }
 
+    public AnimalResponse adoptionEvent(UUID id, boolean newAdoptionEventStatus) {
+        Animal animal = repository.findById(id)
+                .orElseThrow(() -> new AnimalNotFoundException(
+                        format("Cannot updated animal adoption event status: Animal with id %s not found", id))
+                );
+        animal.setAtEvent(newAdoptionEventStatus);
+        repository.save(animal);
+
+        return mapper.toResponse(animal);
+    }
+
     public void delete(UUID id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
@@ -142,6 +153,7 @@ public class AnimalService {
                         .build())
                 .build());
         animal.setAdopted(request.isAdopted());
+        animal.setAtEvent(request.isAtEvent());
         animal.setOngId(request.ongId());
     }
 }

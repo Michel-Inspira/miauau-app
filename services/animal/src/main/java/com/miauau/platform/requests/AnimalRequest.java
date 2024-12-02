@@ -21,6 +21,7 @@ public record AnimalRequest(
         String antiFleasApplicationDate,
         RescueRequest rescue,
         boolean isAdopted,
+        boolean isAtEvent,
         String ongId
 ) {
 }
