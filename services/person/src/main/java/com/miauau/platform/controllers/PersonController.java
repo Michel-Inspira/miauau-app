@@ -2,6 +2,7 @@ package com.miauau.platform.controllers;
 
 import com.miauau.platform.dto.person.PersonResponse;
 import com.miauau.platform.requests.PersonRequest;
+import com.miauau.platform.requests.VolunteerRequest;
 import com.miauau.platform.services.PersonService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +50,21 @@ public class PersonController {
             @RequestBody @Valid PersonRequest request) {
         PersonResponse response = service.create(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/volunteers")
+    public ResponseEntity<PersonResponse> createVolunteer(
+        @RequestBody @Valid VolunteerRequest request) {
+        PersonResponse response = service.createVolunteer(request);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/volunteers/{id}")
+    public ResponseEntity<PersonResponse> updateVolunteer(
+        @PathVariable UUID id,
+        @RequestBody @Valid VolunteerRequest request) {
+        PersonResponse response = service.updateVolunteer(id, request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

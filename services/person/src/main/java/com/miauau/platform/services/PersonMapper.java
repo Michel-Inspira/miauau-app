@@ -4,7 +4,12 @@ import com.miauau.platform.dto.person.PersonResponse;
 import com.miauau.platform.models.Address;
 import com.miauau.platform.models.Person;
 import com.miauau.platform.requests.PersonRequest;
+import com.miauau.platform.requests.VolunteerRequest;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.Year;
+import java.util.Optional;
 
 @Service
 public class PersonMapper {
@@ -13,21 +18,21 @@ public class PersonMapper {
             return null;
         }
         return new PersonResponse(
-                person.getId(),
-                person.getName(),
-                person.getIsVolunteer(),
-                person.getRole(),
-                person.getEmail(),
-                person.getPhone(),
-                person.getCpf(),
-                person.getRg(),
-                person.getBirthDate(),
-                person.getLandline(),
-                person.getAddress().getZipCode(),
-                person.getAddress().getStreet(),
-                person.getAddress().getNumber(),
-                person.getAddress().getComplement(),
-                person.getAddress().getNeighborhood()
+            person.getId(),
+            person.getName(),
+            person.getIsVolunteer(),
+            person.getRole(),
+            person.getEmail(),
+            person.getPhone(),
+            person.getCpf(),
+            person.getRg(),
+            person.getBirthDate(),
+            person.getLandline(),
+            Optional.ofNullable(person.getAddress()).map(Address::getZipCode).orElse(null),
+            Optional.ofNullable(person.getAddress()).map(Address::getStreet).orElse(null),
+            Optional.ofNullable(person.getAddress()).map(Address::getNumber).orElse(null),
+            Optional.ofNullable(person.getAddress()).map(Address::getComplement).orElse(null),
+            Optional.ofNullable(person.getAddress()).map(Address::getNeighborhood).orElse(null)
         );
     }
 
@@ -51,4 +56,22 @@ public class PersonMapper {
                         .build())
                 .build();
     }
+
+    public Person toEntity(VolunteerRequest request) {
+        return Person.builder()
+                .name(request.name())
+                .isVolunteer(true)
+                .email(request.email())
+                .phone(request.phone())
+                .role(request.role())
+                .birthDate(calculateBirthYear(request.age()))
+                .build();
+    }
+
+    private LocalDate calculateBirthYear(int age) {
+        int currentYear = Year.now().getValue();
+        int birthYear = currentYear - age;
+        return LocalDate.of(birthYear, 1, 1);
+    }
+
 }

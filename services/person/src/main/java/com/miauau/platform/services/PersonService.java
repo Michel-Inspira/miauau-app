@@ -6,9 +6,12 @@ import com.miauau.platform.models.Address;
 import com.miauau.platform.models.Person;
 import com.miauau.platform.repositories.PersonRepository;
 import com.miauau.platform.requests.PersonRequest;
+import com.miauau.platform.requests.VolunteerRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -50,6 +53,20 @@ public class PersonService {
         return mapper.toResponse(repository.save(entity));
     }
 
+    public PersonResponse createVolunteer(VolunteerRequest request) {
+        Person entity = mapper.toEntity(request);
+        return mapper.toResponse(repository.save(entity));
+    }
+
+    public PersonResponse updateVolunteer(UUID id, VolunteerRequest request) {
+        Person entity = repository.findById(id)
+            .orElseThrow(() -> new PersonNotFoundException(
+                format("Cannot updated person: Person with id %s not found", id))
+            );
+        mergeVolunteer(entity, request);
+        return mapper.toResponse(repository.save(entity));
+    }
+
     public PersonResponse update(UUID id, PersonRequest request) {
         Person entity = repository.findById(id)
                 .orElseThrow(() -> new PersonNotFoundException(
@@ -86,5 +103,19 @@ public class PersonService {
                 .complement(request.complement())
                 .neighborhood(request.neighborhood())
                 .build());
+    }
+
+    private void mergeVolunteer(Person entity, VolunteerRequest request) {
+        entity.setName(request.name());
+        entity.setRole(request.role());
+        entity.setEmail(request.email());
+        entity.setPhone(request.phone());
+        entity.setBirthDate(calculateBirthYear(request.age()));
+    }
+
+    private LocalDate calculateBirthYear(int age) {
+        int currentYear = Year.now().getValue();
+        int birthYear = currentYear - age;
+        return LocalDate.of(birthYear, 1, 1);
     }
 }
